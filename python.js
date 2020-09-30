@@ -1,3 +1,6 @@
+function isObject(value){
+  return typeof value === 'object' && value !== null
+}
 function print() {
     var sep = ' ';
     var toprint = '';
@@ -5,7 +8,10 @@ function print() {
         arg = arguments[arguments.length - i - 1];
         if (typeof arg === 'string' || arg instanceof String) {
 
-        } else {
+        } else if (isObject(arg)){
+          arg = JSON.stringify(arg);
+        }
+        else {
             arg = arg.toString();
         }
         toprint += arg + sep;
